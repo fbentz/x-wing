@@ -3,8 +3,8 @@
   "version": "0.0.1",
   "description": "X-wing games calculator",
   "scripts": {
-    "test": "./node_modules/.bin/gulp test",
-    "lint": "./node_modules/.bin/eslint src"
+    "test": "gulp test",
+    "lint": "eslint src"
   },
   "keywords": [
     "x-wing"
