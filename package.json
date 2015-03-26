@@ -1,0 +1,23 @@
+{
+  "name": "weeple-xwing",
+  "version": "0.0.1",
+  "description": "X-wing games calculator",
+  "scripts": {
+    "test": "./node_modules/.bin/gulp test",
+    "lint": "./node_modules/.bin/eslint src"
+  },
+  "keywords": [
+    "x-wing"
+  ],
+  "author": "Fabrice Bentz",
+  "license": "MIT",
+  "devDependencies": {
+    "babel": "^4.7.16",
+    "babel-eslint": "^2.0.2",
+    "browserify": "^9.0.3",
+    "eslint": "^0.17.1",
+    "gulp": "^3.8.11",
+    "mocha": "latest",
+    "chai": "latest"
+  }
+}
