@@ -14,11 +14,15 @@
   "devDependencies": {
     "babel": "^4.7.16",
     "babel-eslint": "^2.0.2",
+    "babelify": "^5.0.4",
     "browserify": "^9.0.3",
     "chai": "latest",
     "eslint": "^0.17.1",
     "gulp": "^3.8.11",
+    "material-ui": "^0.7.2",
     "mocha": "latest",
+    "react": "^0.13.1",
+    "react-tap-event-plugin": "^0.1.6",
     "sinon": "^1.14.1"
   }
 }
