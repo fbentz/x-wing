@@ -15,9 +15,10 @@
     "babel": "^4.7.16",
     "babel-eslint": "^2.0.2",
     "browserify": "^9.0.3",
+    "chai": "latest",
     "eslint": "^0.17.1",
     "gulp": "^3.8.11",
     "mocha": "latest",
-    "chai": "latest"
+    "sinon": "^1.14.1"
   }
 }
