@@ -19,6 +19,7 @@
     "chai": "latest",
     "eslint": "^0.17.1",
     "gulp": "^3.8.11",
+    "gulp-less": "^3.0.2",
     "gulp-util": "^3.0.4",
     "karma": "^0.12.31",
     "karma-browserify": "^4.0.0",

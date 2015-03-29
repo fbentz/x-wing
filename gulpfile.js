@@ -8,6 +8,7 @@ var source = require('vinyl-source-stream');
 var babelify = require('babelify');
 var watchify = require('watchify');
 var karma = require('karma').server;
+var less = require('gulp-less');
 
 /**
  * Configuration options
@@ -27,17 +28,26 @@ var options = {
   },
   htmlAssets: [
     'src/index.html'
+  ],
+  cssAssets: [
+    'src/css/style.less'
   ]
 };
 
 /**
  * Assets tasks
  */
-gulp.task('assets', ['assets:html']);
+gulp.task('assets', ['assets:html', 'assets:css']);
 
 gulp.task('assets:html', function() {
   return gulp.src(options.htmlAssets)
     .pipe(gulp.dest(options.target));
+});
+
+gulp.task('assets:css', function() {
+  return gulp.src(options.cssAssets)
+    .pipe(less())
+    .pipe(gulp.dest(path.join(options.target, 'css')));
 });
 
 
@@ -118,4 +128,5 @@ gulp.task('ci', function() {
   });
 });
 
+// Default task
 gulp.task('default', ['js', 'assets']);
