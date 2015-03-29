@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "X-wing games calculator",
   "scripts": {
-    "test": "gulp test",
+    "test": "npm run lint && gulp ci",
     "lint": "eslint src"
   },
   "keywords": [

@@ -105,4 +105,17 @@ gulp.task('tdd', function(done) {
   }, done)
 });
 
+gulp.task('ci', function() {
+  karma.start({
+    configFile: path.join(__dirname, 'karma.conf.js'),
+    autoWatch: false,
+    singleRun: true
+  }, function(status) {
+    if(status > 0) {
+      console.error('Test failed');
+    }
+    process.exit(status);
+  });
+});
+
 gulp.task('default', ['js', 'assets']);
