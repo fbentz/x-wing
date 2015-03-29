@@ -23,6 +23,7 @@
     "mocha": "latest",
     "react": "^0.13.1",
     "react-tap-event-plugin": "^0.1.6",
-    "sinon": "^1.14.1"
+    "sinon": "^1.14.1",
+    "vinyl-source-stream": "^1.1.0"
   }
 }
