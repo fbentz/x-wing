@@ -7,6 +7,7 @@ var browserify = require('browserify');
 var source = require('vinyl-source-stream');
 var babelify = require('babelify');
 var watchify = require('watchify');
+var karma = require('karma').server;
 
 /**
  * Configuration options
@@ -93,6 +94,15 @@ gulp.task('watchify', function() {
   });
 
   return updateBundle(watcher);
+});
+
+/**
+ * Test task
+ */
+gulp.task('tdd', function(done) {
+  karma.start({
+    configFile: path.join(__dirname, 'karma.conf.js')
+  }, done)
 });
 
 gulp.task('default', ['js', 'assets']);
