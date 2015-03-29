@@ -6,7 +6,7 @@
   },
   "rules": {
     "quotes": [1, "single"],
-    "indent": 1,
+    "indent": [1, 2],
     "radix": 1
   }
 }
