@@ -32,6 +32,8 @@ var options = {
 /**
  * Assets tasks
  */
+gulp.task('assets', ['assets:html']);
+
 gulp.task('assets:html', function() {
   return gulp.src(options.htmlAssets)
     .pipe(gulp.dest(options.target));
@@ -91,4 +93,6 @@ gulp.task('watchify', function() {
   });
 
   return updateBundle(watcher);
-})
+});
+
+gulp.task('default', ['js', 'assets']);
