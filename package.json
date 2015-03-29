@@ -19,11 +19,13 @@
     "chai": "latest",
     "eslint": "^0.17.1",
     "gulp": "^3.8.11",
+    "gulp-util": "^3.0.4",
     "material-ui": "^0.7.2",
     "mocha": "latest",
     "react": "^0.13.1",
     "react-tap-event-plugin": "^0.1.6",
     "sinon": "^1.14.1",
-    "vinyl-source-stream": "^1.1.0"
+    "vinyl-source-stream": "^1.1.0",
+    "watchify": "^2.6.2"
   }
 }
