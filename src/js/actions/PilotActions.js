@@ -9,7 +9,8 @@ export default class PilotActions extends Actions {
   }
 
   async create(pilot) {
-    return pilot;
+    const response = await this.db.post(pilot);
+    return response;
   }
 
 }

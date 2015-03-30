@@ -7,9 +7,13 @@ import PilotActions from '../../js/actions/PilotActions';
 
 describe('pilotAction', () => {
 
-  var flux, actions, fakeDb;
+  var flux;
+  var actions;
+  var fakeDb;
+  var sandbox;
 
   beforeEach(() => {
+    sandbox = sinon.sandbox.create();
     fakeDb = {
       post: sinon.spy()
     };
@@ -17,12 +21,19 @@ describe('pilotAction', () => {
     actions = flux.createActions('test', PilotActions, fakeDb);
   });
 
+  afterEach(() => {
+    sandbox.restore();
+  });
+
   it('should have an instance of db', () => {
     expect(actions.db).to.deep.equal(fakeDb);
   });
 
   it('should be create a new pilot', () => {
-    expect(actions.create(Pilot)).to.deep.equal(Pilot);
+    // const promise = actions.create(Pilot);
+    actions.create(Pilot);
+    sinon.assert.calledWithExactly(fakeDb.post, Pilot);
+    // return expect(promise).to.eventually.have(Pilot);
   });
 
 });
