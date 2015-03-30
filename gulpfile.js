@@ -1,55 +1,16 @@
 'use strict';
 
 var gulp = require('gulp');
-var util = require('gulp-util')
-var path = require('path');
-var browserify = require('browserify');
-var source = require('vinyl-source-stream');
-var babelify = require('babelify');
-var watchify = require('watchify');
-var karma = require('karma').server;
-var less = require('gulp-less');
-
-/**
- * Configuration options
- */
-var options = {
-  target: 'build',
-  app: {
-    src: './src/js/app.js',
-    target: 'app.js'
-  },
-  vendors: {
-    target: 'vendors.js',
-    modules: [
-      'react/addons',
-      'material-ui'
-    ]
-  },
-  htmlAssets: [
-    'src/index.html'
-  ],
-  cssAssets: [
-    'src/css/style.less'
-  ]
-};
+var assets = require('./tasks/assets');
+var bundle = require('./tasks/bundle');
+var test = require('./tasks/test');
 
 /**
  * Assets tasks
  */
 gulp.task('assets', ['assets:html', 'assets:css']);
-
-gulp.task('assets:html', function() {
-  return gulp.src(options.htmlAssets)
-    .pipe(gulp.dest(options.target));
-});
-
-gulp.task('assets:css', function() {
-  return gulp.src(options.cssAssets)
-    .pipe(less())
-    .pipe(gulp.dest(path.join(options.target, 'css')));
-});
-
+gulp.task('assets:html', assets.html);
+gulp.task('assets:css', assets.css);
 
 /**
  * JS Tasks
@@ -59,74 +20,24 @@ gulp.task('js', ['bundle:app']);
 /**
  * Bundle Vendors
  */
-gulp.task('bundle:vendors', function() {
-  return browserify()
-    .require(options.vendors.modules)
-    .bundle()
-    .pipe(source(options.vendors.target))
-    .pipe(gulp.dest(path.join(options.target,'js')));
-});
+gulp.task('bundle:vendors', bundle.vendors);
 
 /**
  * Bundle app
  */
-gulp.task('bundle:app', ['bundle:vendors'], function() {
-  return browserify(options.app.src)
-    .external(options.vendors.modules)
-    .transform(babelify)
-    .bundle()
-    .pipe(source(options.app.target))
-    .pipe(gulp.dest(path.join(options.target,'js')));
-});
+gulp.task('bundle:app', ['bundle:vendors'], bundle.app);
 
 /**
  * Watchify
  */
-gulp.task('watchify', function() {
-  var bundle = browserify(options.app.src, watchify.args)
-    .external(options.vendors.modules)
-    .transform(babelify);
-
-  function updateBundle(watch) {
-    return watch.bundle()
-      .pipe(source(options.app.target))
-      .pipe(gulp.dest(path.join(options.target,'js')));
-  }
-
-  var watcher = watchify(bundle);
-
-  watcher.on('update', function() {
-    updateBundle(watcher);
-  });
-
-  watcher.on('log', function(msg) {
-    util.log(util.colors.green(msg));
-  });
-
-  return updateBundle(watcher);
-});
+gulp.task('watchify', bundle.watch);
 
 /**
  * Test task
  */
-gulp.task('tdd', function(done) {
-  karma.start({
-    configFile: path.join(__dirname, 'karma.conf.js')
-  }, done)
-});
+gulp.task('tdd', test.tdd);
 
-gulp.task('ci', function() {
-  karma.start({
-    configFile: path.join(__dirname, 'karma.conf.js'),
-    autoWatch: false,
-    singleRun: true
-  }, function(status) {
-    if(status > 0) {
-      console.error('Test failed');
-    }
-    process.exit(status);
-  });
-});
+gulp.task('ci', test.ci);
 
 // Default task
 gulp.task('default', ['js', 'assets']);
