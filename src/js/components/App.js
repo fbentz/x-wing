@@ -4,12 +4,9 @@ import { AppBar } from 'material-ui';
 
 export default class App extends React.Component {
   render() {
-    return (<AppBar />);
+    return (
+      <AppBar />
+    );
   }
 }
 
-var App = {
-  render: function() {
-
-  }
-};
