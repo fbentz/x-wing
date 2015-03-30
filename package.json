@@ -18,6 +18,7 @@
     "browserify": "^9.0.3",
     "chai": "latest",
     "eslint": "^0.17.1",
+    "flummox": "^3.3.0",
     "gulp": "^3.8.11",
     "gulp-less": "^3.0.2",
     "gulp-util": "^3.0.4",
