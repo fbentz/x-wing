@@ -36,7 +36,6 @@ gulp.task('watchify', bundle.watch);
  * Test task
  */
 gulp.task('tdd', test.tdd);
-
 gulp.task('ci', test.ci);
 
 // Default task
