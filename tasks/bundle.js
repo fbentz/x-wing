@@ -26,7 +26,9 @@ exports.vendors = function bundleVendors() {
 exports.app = function bundleApp() {
   return browserify(config.app.src)
     .external(config.vendors.modules)
-    .transform(babelify)
+    .transform(babelify.configure({
+      optional: ['asyncToGenerator']
+    }))
     .bundle()
     .pipe(source(config.app.target))
     .pipe(gulp.dest(path.join(config.target, 'js')));

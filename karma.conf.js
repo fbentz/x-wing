@@ -33,7 +33,7 @@ module.exports = function(config) {
 
     browserify: {
       debug: true,
-      transform: ['babelify']
+      transform: [['babelify', {'optional': ['asyncToGenerator']}]]
     },
 
     // test results reporter to use
