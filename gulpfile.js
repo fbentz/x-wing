@@ -4,6 +4,7 @@ var gulp = require('gulp');
 var assets = require('./tasks/assets');
 var bundle = require('./tasks/bundle');
 var test = require('./tasks/test');
+var config = require('./tasks/config');
 
 /**
  * Assets tasks
@@ -39,4 +40,9 @@ gulp.task('tdd', test.tdd);
 gulp.task('ci', test.ci);
 
 // Default task
-gulp.task('default', ['js', 'assets']);
+gulp.task('default', ['js', 'assets', 'watch']);
+
+gulp.task('watch', ['watchify'], function() {
+  gulp.watch(config.htmlAssets, assets.html);
+  gulp.watch(config.cssAssets, assets.css);
+});
