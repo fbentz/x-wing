@@ -19,7 +19,7 @@ exports.ci = function ci(done) {
     singleRun: true
   }, function(status) {
     if(status > 0) {
-      throw new Error('Test failed');
+      throw Error('Test failed');
     }
     return done;
   });
